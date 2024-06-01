@@ -25,6 +25,8 @@ class Load extends Phaser.Scene {
         
         this.load.audio('coin', 'beltHandle1.ogg');
         this.load.audio('door', 'doorOpen_1.ogg');
+        this.load.audio('dia', 'jingles_NES03.ogg');
+        this.load.audio('key', 'jingles_NES06.ogg');
     }
     
     create() {

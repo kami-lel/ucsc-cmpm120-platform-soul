@@ -184,7 +184,7 @@ class Level1 extends Phaser.Scene {
         this.diasGroup = this.add.group(my.sprite.dias);
 
         this.physics.add.overlap(my.sprite.player, this.diasGroup, (obj1, obj2) => {
-            this.power_up = true;
+            this.power_up_do();
         });
         
         // collide with jumper
@@ -221,12 +221,19 @@ class Level1 extends Phaser.Scene {
         this.physics.add.overlap(my.sprite.player, this.keyGrp, (obj1, obj2) => {
             obj2.destroy(); // remove coin on overlap
             this.had_key = true;
+            this.sound.play('key')
         });
+        
+    }
+    
+    power_up_do() {
+        if (this.power_up) {return;}
+        this.power_up = true;
+        this.sound.play('dia');
         
     }
 
     update() {
-        this.power_up = true; // todo
         this.update_player();
     }
     
