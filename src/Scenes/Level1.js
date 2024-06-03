@@ -9,7 +9,7 @@ const ACCELERATION_X = 450;
 const PLAYER_DRAG = 550;
 const PLAYER_MAX_SPEED = 120;
 const JUMP_VELOCITY = -420;
-const CAMERA_ZOOM = 3.5;
+const CAMERA_ZOOM = 3.5
 
 
 class Level1 extends Phaser.Scene {
@@ -38,6 +38,12 @@ class Level1 extends Phaser.Scene {
         this.scene.launch('ui');
         this.game_end = false;
         this.had_key = false;
+
+        // add text to introduce
+        this.add.text(450, 200, 'collect diamond to\nenable air jump', 
+                { fontFamily: 'Courier', fontSize: 12, color: '#ffffff' });
+        this.add.text(1260, 30, 'be careful on\nthe conveyor belt', 
+                { fontFamily: 'Courier', fontSize: 12, color: '#ffffff' });
     }
 
     create_map() {
