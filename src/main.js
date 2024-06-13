@@ -22,20 +22,27 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false,
+            debug: true,  // TODO turn off
             gravity: {
                 x: 0,
-                y: 0
+                y: 1500
             }
         }
     },
     width: 1440,
     height: 900,
-    scene: [Load, Level1, UI]
+    scene: [Load, Level0, Level1, UI]
 }
 
+// const values
+const CAMERA_ZOOM = 3.5;
+const PLAYER_ACCELERATION_X = 450;
+const PLAYER_DRAG = 550;
+const PLAYER_MAX_SPEED = 120;
+//const PLAYER_MAX_SPEED = 1000;
+const PLAYER_JUMP_VELOCITY = -420;
+
 var cursors;
-const SCALE = 2.0;
 var my = {sprite: {}, text: {}, vfx: {}};
 
 const game = new Phaser.Game(config);

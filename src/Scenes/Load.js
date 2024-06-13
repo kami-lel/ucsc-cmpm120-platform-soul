@@ -1,5 +1,4 @@
 
-const TILEMAP = 'monochrome_tilemap_transparent_packed.png';
 
 class Load extends Phaser.Scene {
     constructor() {
@@ -9,20 +8,26 @@ class Load extends Phaser.Scene {
     preload() {
         this.load.setPath("./assets/");
         
-        // load tilemap
-        this.load.image('tilemap_tiles', TILEMAP);
-        this.load.tilemapTiledJSON('level1', 'level1.tmj');
-        this.load.spritesheet('tilemap_sheet', TILEMAP, {
+        // tilemap
+        let tilemap = 'monochrome_tilemap_transparent_packed.png'
+        this.load.image('tilemap_tiles', tilemap);
+        this.load.spritesheet('tilemap_sheet', tilemap, {
             frameWidth: 16, 
             frameWidth: 16
         });
+
+        // map
+        this.load.tilemapTiledJSON('level0', 'level0.tmj');
+        this.load.tilemapTiledJSON('level1', 'level1.tmj');
         
-        // load particles
+        // particles
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
         
-        // load background
+        // background
+        this.load.image('background0', 'background0.png');
         this.load.image('background1', 'background1.png');
         
+        // audio
         this.load.audio('coin', 'beltHandle1.ogg');
         this.load.audio('door', 'doorOpen_1.ogg');
         this.load.audio('dia', 'jingles_NES03.ogg');
@@ -30,6 +35,17 @@ class Load extends Phaser.Scene {
     }
     
     create() {
+        this.create_animes()
+ 
+        // init variables
+        my.total_score = 0;
+
+
+        // start game
+        this.scene.start('level1');
+    }
+
+    create_animes() {
         // char anims
         this.anims.create({
             key: 'idle',
@@ -150,9 +166,7 @@ class Load extends Phaser.Scene {
             frameRate: 10,
             repeat: -1
         })
-
-        this.scene.start('level1');
     }
-    
+
     update() {}
 }
