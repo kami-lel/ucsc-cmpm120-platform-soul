@@ -22,7 +22,7 @@ class Load extends Phaser.Scene {
         
         // particles
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
-        
+    
         // background
         this.load.image('background0', 'background0.png');
         this.load.image('background1', 'background1.png');
@@ -32,6 +32,8 @@ class Load extends Phaser.Scene {
         this.load.audio('door', 'doorOpen_1.ogg');
         this.load.audio('dia', 'jingles_NES03.ogg');
         this.load.audio('key', 'jingles_NES06.ogg');
+        this.load.audio('kill', 'impactBell_heavy_001.ogg');
+        this.load.audio('jumper', 'impactBell_heavy_003.ogg');
     }
     
     create() {
@@ -40,9 +42,8 @@ class Load extends Phaser.Scene {
         // init variables
         my.total_score = 0;
 
-
         // start game
-        this.scene.start('level1');
+        this.scene.start('level0');
     }
 
     create_animes() {

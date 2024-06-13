@@ -62,13 +62,10 @@ class Level0 extends LevelBase {
         }
     }
 
-    respwan() {
-        my.player.setVelocityX(0);
-        my.player.setVelocityY(0);
-        my.player.body.x = this.PLAYER_SPWAN_X;
-        my.player.body.y = this.PLAYER_SPWAN_Y;
+    is_on_belt() {
+        return false;
     }
-    
+
     end_scene() {
         this.time.delayedCall(1500, () => {
             this.scene.start('level1')

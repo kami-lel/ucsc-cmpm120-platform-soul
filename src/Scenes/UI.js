@@ -38,6 +38,9 @@ class UI extends Phaser.Scene {
         case 7:
             info_part = 'The diamond allow you to air jump';
             break;
+        case 8:
+            info_part = '\n\nEND of Game\nThanks for Playing';
+            break;
         }
         this.scoreText.setText(score_part + '\n' + info_part);
     }    

@@ -22,7 +22,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,  // TODO turn off
+            debug: false,
             gravity: {
                 x: 0,
                 y: 1500

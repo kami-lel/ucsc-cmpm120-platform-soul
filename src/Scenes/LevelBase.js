@@ -114,6 +114,7 @@ class LevelBase extends Phaser.Scene {
             my.follow_key.body.x = my.player.body.x;
             my.follow_key.body.y = my.player.body.y;
             obj2.destroy();
+            this.sound.play('key');
     
         });
 
@@ -179,7 +180,9 @@ class LevelBase extends Phaser.Scene {
         this.diasGroup = this.add.group(my.sprite.dias);
 
         this.physics.add.overlap(my.player, this.diasGroup, (obj1, obj2) => {
+            if (my.power_up) {return;}
             obj2.destroy();
+            this.sound.play('dia');
             my.power_up = true;
         });
     }
@@ -200,6 +203,7 @@ class LevelBase extends Phaser.Scene {
         this.physics.add.overlap(my.player, this.jumperGrp, (obj1, obj2) => {
             obj1.setVelocityY(PLAYER_JUMP_VELOCITY*2);
             obj2.anims.play('jumper');
+            this.sound.play('jumper');
         });
         
     }
@@ -285,6 +289,15 @@ class LevelBase extends Phaser.Scene {
             my.vfx.power_up.start();
         }
     }
+
+    respwan() {
+        this.sound.play('kill');
+        my.player.setVelocityX(0);
+        my.player.setVelocityY(0);
+        my.player.body.x = this.PLAYER_SPWAN_X;
+        my.player.body.y = this.PLAYER_SPWAN_Y;
+    }
+    
  
 
  }

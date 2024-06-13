@@ -63,94 +63,14 @@ class Level1 extends LevelBase {
         }
     }
 
-    respwan() {
-        my.player.setVelocityX(0);
-        my.player.setVelocityY(0);
-        my.player.body.x = this.PLAYER_SPWAN_X;
-        my.player.body.y = this.PLAYER_SPWAN_Y;
-    }
-    
     is_on_belt() {
         return (1264 < my.player.x && my.player.x < 1370) &&
                 (71.5 < my.player.y && my.player.y < 72.5);
     }
+    
+    end_scene() {
+        my.info_mode = 8;
+    }
 }
 
 
-class Level12 extends LevelBase {
-
-    init() {
-        total_score = 0;
-        game_over = false;
-    }
-
-    create() {
-
-
-        this.keys = this.map.createFromObjects("objects", {
-            name: "key",
-            key: "tilemap_sheet",
-            frame: 96
-        });
-
-        // inputs
-        this.create_player();
-
-        this.power_up = false;
-        this.air_jump = 0;
-
-        this.game_end = false;
-        this.had_key = false;
-
-        this.create_camera();
-
-        // add text to introduce
-        this.add.text(450, 200, 'collect diamond to\nenable air jump', 
-                { fontFamily: 'Courier', fontSize: 12, color: '#ffffff' });
-        this.add.text(1260, 30, 'be careful on\nthe conveyor belt', 
-                { fontFamily: 'Courier', fontSize: 12, color: '#ffffff' });
-
-        this.scene.launch('ui');
-    }
-    
-    create_player() {
-
-        
-
-        this.physics.world.enable(this.keys, Phaser.Physics.Arcade.STATIC_BODY);
-        this.keyGrp = this.add.group(this.keys);
-        this.physics.add.overlap(my.player, this.keyGrp, (obj1, obj2) => {
-            obj2.destroy(); // remove coin on overlap
-            this.had_key = true;
-            this.sound.play('key')
-        });
-        
-    }
-    
-    power_up_do() {
-        if (this.power_up) {return;}
-        this.power_up = true;
-        this.sound.play('dia');
-        
-    }
-
-    update() {
-        this.update_player();
-    }
-
-
-    end_game() {
-        if (!this.had_key || game_over) {return;}
-        game_over = true;
-
-        this.sound.play('door');
-        for (let fan of my.sprite.door_left) {
-            fan.anims.play('door_left');
-        }
-        for (let fan of my.sprite.door_right) {
-            fan.anims.play('door_right');
-        }
-        this.sound.play('door');
-        
-    }
-}
